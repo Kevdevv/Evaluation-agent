@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Missions{% endblock %}
+
+{% block body %}
+    <h1>Missions</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mission.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ mission.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ mission.description }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ mission.country }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>
+                    {{ form_start(form) }}
+                        {{ form_row(form.statut) }}
+                        <button class="btn">{{ button_label|default('Save') }}</button>
+                    {{ form_end(form) }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_missions') }}">back to list</a>
+{% endblock %}

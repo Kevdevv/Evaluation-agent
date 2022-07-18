@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue{% endblock %}
+
+{% block body %}
+
+{% if app.user %}
+    {% if 'ROLE_ADMIN' in app.user.roles %}
+            <a href="{{ path('app_missions') }}" class="btn btn-primary">Espion</a>
+            <a href="{{ path('app_admin_missions_index') }}" class="btn btn-primary">Admin</a>
+    {% else %}
+            <a href="{{ path('app_missions') }}" class="btn btn-primary">Espion</a>
+    {% endif %}
+{% else %}
+    <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
+{% endif %}
+
+{% endblock %}
