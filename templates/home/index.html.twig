@@ -1,18 +1,19 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Bienvenue{% endblock %}
 
-{% block body %}
-
+{% block body  %}
+<div class= "container d-flex justify-content-center align-items-center" style="height: 100vh;">
 {% if app.user %}
     {% if 'ROLE_ADMIN' in app.user.roles %}
             <a href="{{ path('app_missions') }}" class="btn btn-primary">Espion</a>
-            <a href="{{ path('app_admin_missions_index') }}" class="btn btn-primary">Admin</a>
+            <a href="{{ path('app_admin_home') }}" class="btn btn-primary">Admin</a>
     {% else %}
             <a href="{{ path('app_missions') }}" class="btn btn-primary">Espion</a>
     {% endif %}
 {% else %}
-    <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
+    <a href="{{ path('app_login') }}" class="btn btn-dark">Se connecter</a>
 {% endif %}
-
+</div>
 {% endblock %}

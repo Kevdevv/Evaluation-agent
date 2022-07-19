@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Bienvenue{% endblock %}
+
+{% block body  %}
+<div class= "container d-flex justify-content-center align-items-center" style="height: 100vh;">
+<a href="{{ path('app_admin_missions_index') }}" class="btn btn-primary">Liste des missions</a>
+<a href="{{ path('app_admin_missions_new') }}" class="btn btn-primary">Créer une mission</a>
+<a href="{{ path('app_admin_user_index') }}" class="btn btn-primary">Liste des Agents</a>
+<a href="{{ path('app_admin_user_new') }}" class="btn btn-primary">Créer un agent</a>
+</div>
+{% endblock %}
