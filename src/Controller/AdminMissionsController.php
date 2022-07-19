@@ -27,6 +27,7 @@ class AdminMissionsController extends AbstractController
         $mission = new Missions();
         $form = $this->createForm(MissionsType::class, $mission);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $missionsRepository->add($mission, true);

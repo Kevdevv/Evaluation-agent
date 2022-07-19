@@ -12,7 +12,9 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Country</th>
-                <th>actions</th>
+                <th>Statut</th>
+                <th>Target</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,8 +26,14 @@
                 <td>{{ mission.country }}</td>
                 <td>{{ mission.statut }}</td>
                 <td>
+                {% for t in mission.targets %}
+                    {{ t.firstname }} {{ t.lastname }}
+                {% endfor %}
+                </td>
+                <td>
                     <a href="{{ path('app_admin_missions_show', {'id': mission.id}) }}">show</a>
                     <a href="{{ path('app_admin_missions_edit', {'id': mission.id}) }}">edit</a>
+                    {{ include('admin_missions/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}

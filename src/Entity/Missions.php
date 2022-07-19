@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\MissionsRepository;
+use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MissionsRepository;
 
 #[ORM\Entity(repositoryClass: MissionsRepository::class)]
 class Missions
@@ -24,6 +28,31 @@ class Missions
 
     #[ORM\Column(length: 255)]
     private ?string $statut = 'A faire';
+
+    #[ORM\Column(length: 255)]
+    private ?string $type = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $speciality = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $start_date = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $end_date = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $code_name = null;
+
+    #[ORM\OneToMany(mappedBy: 'mission', targetEntity: Target::class)]
+    private Collection $targets;
+
+    public function __construct()
+    {
+        $this->start_date = new DateTimeImmutable();
+        $this->end_date = new DateTimeImmutable();
+        $this->targets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +103,96 @@ class Missions
     public function setStatut(string $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getSpeciality(): ?string
+    {
+        return $this->speciality;
+    }
+
+    public function setSpeciality(string $speciality): self
+    {
+        $this->speciality = $speciality;
+
+        return $this;
+    }
+
+    public function getStartDate(): ?\DateTimeInterface
+    {
+        return $this->start_date;
+    }
+
+    public function setStartDate(\DateTimeInterface $start_date): self
+    {
+        $this->start_date = $start_date;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->end_date;
+    }
+
+    public function setEndDate(\DateTimeInterface $end_date): self
+    {
+        $this->end_date = $end_date;
+
+        return $this;
+    }
+
+    public function getCodeName(): ?string
+    {
+        return $this->code_name;
+    }
+
+    public function setCodeName(string $code_name): self
+    {
+        $this->code_name = $code_name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Target>
+     */
+    public function getTargets(): Collection
+    {
+        return $this->targets;
+    }
+
+    public function addTarget(Target $target): self
+    {
+        if (!$this->targets->contains($target)) {
+            $this->targets[] = $target;
+            $target->setMission($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTarget(Target $target): self
+    {
+        if ($this->targets->removeElement($target)) {
+            // set the owning side to null (unless already changed)
+            if ($target->getMission() === $this) {
+                $target->setMission(null);
+            }
+        }
 
         return $this;
     }
