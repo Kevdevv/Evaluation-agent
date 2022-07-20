@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Qg{% endblock %}
+
+{% block body %}
+    <h1>Edit Qg</h1>
+
+    {{ include('admin_qg/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_admin_qg_index') }}">back to list</a>
+
+    {{ include('admin_qg/_delete_form.html.twig') }}
+{% endblock %}

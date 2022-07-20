@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qg index{% endblock %}
+
+{% block body %}
+    <h1>Qg index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Address</th>
+                <th>Country</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for qg in qgs %}
+            <tr>
+                <td>{{ qg.id }}</td>
+                <td>{{ qg.code }}</td>
+                <td>{{ qg.address }}</td>
+                <td>{{ qg.country }}</td>
+                <td>{{ qg.type }}</td>
+                <td>
+                    <a href="{{ path('app_admin_qg_show', {'id': qg.id}) }}">show</a>
+                    <a href="{{ path('app_admin_qg_edit', {'id': qg.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_qg_new') }}">Create new</a>
+{% endblock %}

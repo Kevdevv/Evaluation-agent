@@ -44,14 +44,22 @@ class Missions
     #[ORM\Column(length: 255)]
     private ?string $code_name = null;
 
-    #[ORM\OneToMany(mappedBy: 'mission', targetEntity: Target::class)]
+    #[ORM\OneToMany(mappedBy: 'mission', targetEntity: Target::class, orphanRemoval: true, cascade:["persist"])]
     private Collection $targets;
+
+    #[ORM\OneToMany(mappedBy: 'missions', targetEntity: Qg::class, cascade:["persist"])]
+    private Collection $qg;
+
+    #[ORM\OneToMany(mappedBy: 'missions', targetEntity: Contact::class, cascade:["persist"])]
+    private Collection $contact;
 
     public function __construct()
     {
         $this->start_date = new DateTimeImmutable();
         $this->end_date = new DateTimeImmutable();
         $this->targets = new ArrayCollection();
+        $this->qg = new ArrayCollection();
+        $this->contact = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +199,66 @@ class Missions
             // set the owning side to null (unless already changed)
             if ($target->getMission() === $this) {
                 $target->setMission(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Qg>
+     */
+    public function getQg(): Collection
+    {
+        return $this->qg;
+    }
+
+    public function addQg(Qg $qg): self
+    {
+        if (!$this->qg->contains($qg)) {
+            $this->qg[] = $qg;
+            $qg->setMissions($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQg(Qg $qg): self
+    {
+        if ($this->qg->removeElement($qg)) {
+            // set the owning side to null (unless already changed)
+            if ($qg->getMissions() === $this) {
+                $qg->setMissions(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContact(): Collection
+    {
+        return $this->contact;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contact->contains($contact)) {
+            $this->contact[] = $contact;
+            $contact->setMissions($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contact->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getMissions() === $this) {
+                $contact->setMissions(null);
             }
         }
 

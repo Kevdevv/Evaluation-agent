@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Missions;
+use App\Entity\User;
 use App\Form\MissionsType;
 use App\Repository\MissionsRepository;
+use App\Repository\QgRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,7 +52,7 @@ class AdminMissionsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_missions_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Missions $mission, MissionsRepository $missionsRepository): Response
+    public function edit(Request $request, Missions $mission, MissionsRepository $missionsRepository, QgRepository $qgRepository): Response
     {
         $form = $this->createForm(MissionsType::class, $mission);
         $form->handleRequest($request);

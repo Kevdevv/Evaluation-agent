@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Contact;
 use App\Entity\Target;
 use App\Entity\Missions;
+use App\Entity\Qg;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -18,17 +20,43 @@ class MissionsType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('country')
-            ->add('type')
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'Surveillance' => 'Surveillance',
+                    'Assassinat' => 'Assassinat',
+                    'Infiltration' => 'Infiltration'
+                ],
+                'expanded' => false,
+                'label' => 'Type',
+                'required' => true
+            ])
             ->add('code_name')
             ->add('start_date')
             ->add('end_date')
-            ->add('speciality')
-            ->add('targets', EntityType::class, [
-                'class' => Target::class,
+            ->add('speciality', ChoiceType::class, [
+                'choices' => [
+                    'Discrétion' => 'Discrétion',
+                    'Assassin' => 'Assassin',
+                    'Repérage' => 'Repérage'
+                ],
+                'expanded' => false,
+                'label' => 'Speciality',
+                'required' => true
+            ])
+            /*->add('contact', EntityType::class, [
+                'class' => Contact::class,
                 'choice_label' => 'lastname',
                 'multiple' => true,
-                'required' => false
+                'required' => true,
+                'mapped' => true
             ])
+            ->add('qg', EntityType::class, [
+                'class' => Qg::class,
+                'choice_label' => 'code',
+                'multiple' => true,
+                'required' => false,
+                'mapped' => true
+            ])*/
             ->add('statut', ChoiceType::class, [
                 'choices' => [
                     'En préparation' => 'En préparation',
@@ -37,7 +65,7 @@ class MissionsType extends AbstractType
                     'Echec' => 'Echec',
                     'A faire' => 'A faire'
                 ],
-                'expanded' => true,
+                'expanded' => false,
                 'label' => 'Statut',
                 'required' => true
             ])
