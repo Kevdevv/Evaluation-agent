@@ -39,6 +39,20 @@ class MissionsRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Missions[] Returns an array of Missions objects
+     */
+    public function findVisible($value): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.speciality = :val')
+            ->setParameter('val', $value)
+            ->orderBy('m.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Missions[] Returns an array of Missions objects
 //     */

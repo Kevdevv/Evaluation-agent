@@ -2,15 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Contact;
-use App\Entity\Target;
-use App\Entity\Missions;
 use App\Entity\Qg;
+use App\Entity\Target;
+use App\Entity\Contact;
+use App\Entity\Missions;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 class MissionsType extends AbstractType
 {
@@ -19,7 +20,7 @@ class MissionsType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('country')
+            ->add('country', CountryType::class)
             ->add('type', ChoiceType::class, [
                 'choices' => [
                     'Surveillance' => 'Surveillance',

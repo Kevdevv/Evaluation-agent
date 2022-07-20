@@ -24,7 +24,12 @@ class MissionsController extends AbstractController
     #[Route('/', name: 'app_missions')]
     public function index(): Response
     {
-        $missions = $this->repository->findAll();
+        $user = $this->getUser();
+        $nationality = $user->getNationality();
+        $speciality = $user->getSpeciality();
+
+        $missions = $this->repository->findVisible($speciality);
+        //$missions = $this->repository->findAll();
 
         return $this->render('missions/index.html.twig', [
             'missions' => $missions,
