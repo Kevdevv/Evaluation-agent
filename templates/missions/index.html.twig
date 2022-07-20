@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Photo</th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Country</th>
@@ -19,7 +19,7 @@
         <tbody>
         {% for mission in missions %}
             <tr>
-                <td>{{ mission.id }}</td>
+                <td><img src="{{ vich_uploader_asset(mission, 'imageFile') | imagine_filter('thumb')}}"></td>
                 <td>{{ mission.title }}</td>
                 <td>{{ mission.description }}</td>
                 <td>{{ mission.country }}</td>

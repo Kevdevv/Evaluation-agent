@@ -3,13 +3,20 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MissionsRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[ORM\Entity(repositoryClass: MissionsRepository::class)]
+/**
+ * @ORM\Entity
+ * @Vich\Uploadable
+ */
 class Missions
 {
     #[ORM\Id]
@@ -53,6 +60,18 @@ class Missions
     #[ORM\OneToMany(mappedBy: 'missions', targetEntity: Contact::class, cascade:["persist"])]
     private Collection $contact;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    /**
+     * @Vich\UploadableField(mapping="missions_image", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    #[ORM\Column(nullable: true, type: Types::DATETIME_MUTABLE)]
+    private ?\DateTime $updatedAt = null;
+
     public function __construct()
     {
         $this->start_date = new DateTimeImmutable();
@@ -60,6 +79,34 @@ class Missions
         $this->targets = new ArrayCollection();
         $this->qg = new ArrayCollection();
         $this->contact = new ArrayCollection();
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image instanceof UploadedFile) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     public function getId(): ?int
@@ -261,6 +308,18 @@ class Missions
                 $contact->setMissions(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
