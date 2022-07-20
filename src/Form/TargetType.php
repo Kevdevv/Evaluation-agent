@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 class TargetType extends AbstractType
 {
@@ -18,7 +19,7 @@ class TargetType extends AbstractType
             ->add('firstname')
             ->add('birth')
             ->add('name_code')
-            ->add('nationality')
+            ->add('nationality', CountryType::class)
             ->add('mission', EntityType::class, [
                 'class' => Missions::class,
                 'choice_label' => 'title',

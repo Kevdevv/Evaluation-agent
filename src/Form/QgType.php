@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 class QgType extends AbstractType
@@ -20,7 +21,16 @@ class QgType extends AbstractType
             ->add('code')
             ->add('address')
             ->add('country', CountryType::class)
-            ->add('type')
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'Surveillance' => 'Surveillance',
+                    'Assassinat' => 'Assassinat',
+                    'Infiltration' => 'Infiltration'
+                ],
+                'expanded' => false,
+                'label' => 'Type',
+                'required' => true
+            ])
             ->add('missions', EntityType::class, [
                 'class' => Missions::class,
                 'choice_label' => 'title',
