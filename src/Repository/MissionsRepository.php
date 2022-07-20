@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Target;
 use App\Entity\Missions;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Repository\TargetRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Missions>
@@ -42,11 +44,14 @@ class MissionsRepository extends ServiceEntityRepository
     /**
      * @return Missions[] Returns an array of Missions objects
      */
-    public function findVisible($value): array
+    public function findVisible($spec, $tc): array
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.speciality = :val')
-            ->setParameter('val', $value)
+            ->join(Target::class, 't')
+            ->andWhere('m.speciality = :spec')
+            ->andWhere('t.nationality != :tc')
+            ->setParameter('spec', $spec)
+            ->setParameter('tc', $tc)
             ->orderBy('m.id', 'ASC')
             ->getQuery()
             ->getResult()

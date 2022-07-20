@@ -28,7 +28,7 @@ class MissionsController extends AbstractController
         $nationality = $user->getNationality();
         $speciality = $user->getSpeciality();
 
-        $missions = $this->repository->findVisible($speciality);
+        $missions = $this->repository->findVisible($speciality, $nationality);
         //$missions = $this->repository->findAll();
 
         return $this->render('missions/index.html.twig', [
