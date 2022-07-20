@@ -10,12 +10,16 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: MissionsRepository::class)]
 /**
  * @ORM\Entity
  * @Vich\Uploadable
+ * @UniqueEntity("title")
+ * @UniqueEntity("code_name")
  */
 class Missions
 {
@@ -25,6 +29,14 @@ class Missions
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    /**
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 50,
+     *      minMessage = "Le nom du bien doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom du bien ne peux pas être plus grand que {{ limit }} caractères"
+     * )
+     */
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
@@ -65,6 +77,13 @@ class Missions
 
     /**
      * @Vich\UploadableField(mapping="missions_image", fileNameProperty="image")
+     * @Assert\Image(
+     *     mimeTypes="image/jpeg",
+     *     mimeTypesMessage = "Merci d'ajouter une image JPEG"
+     * )
+     * @Assert\File(
+     *     maxSize = "1024k",
+     * )
      * @var File
      */
     private $imageFile;
