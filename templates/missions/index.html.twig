@@ -12,7 +12,7 @@
   <div class="card-body">
     <h5 class="card-title">{{ mission.title }}</h5>
     <p class="card-text"> {{ mission.country }} </p>
-    <p class="card-text">{{ mission.description | nl2br }}</p>
+    <p class="card-text">{{ mission.excerpt }}</p>
     <p class="card-text"> {{ mission.statut }} </p>
     <a href="{{ path('app_missions_show', {'id': mission.id}) }}" class="btn btn-primary">Détails</a>
   </div>

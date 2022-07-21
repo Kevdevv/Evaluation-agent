@@ -4,11 +4,15 @@
 {% block title %}Bienvenue{% endblock %}
 
 {% block body  %}
-<div class= "container d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class= "container mt-4 d-flex justify-content-center align-items-center">
 {% if app.user %}
     {% if 'ROLE_ADMIN' in app.user.roles %}
-            <a href="{{ path('app_missions') }}" class="btn btn-primary">Espion</a>
-            <a href="{{ path('app_admin_home') }}" class="btn btn-primary">Admin</a>
+            <!--<a href="{{ path('app_missions') }}" class="btn btn-primary">Espion</a>
+            <a href="{{ path('app_admin_home') }}" class="btn btn-primary">Admin</a>-->
+
+            <a href="{{ path('app_missions') }}">
+            <img class="agent" src="/images/agent.png">
+            </a>
     {% else %}
             <a href="{{ path('app_missions') }}" class="btn btn-primary">Espion</a>
     {% endif %}

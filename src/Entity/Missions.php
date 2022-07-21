@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Entity;
-
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MissionsRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\String\UnicodeString;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -148,6 +148,15 @@ class Missions
     public function getDescription(): ?string
     {
         return $this->description;
+    }
+
+    public function getExcerpt (): ?string
+    {
+        if ($this->description === null){
+            return null;
+        }
+
+        return (new UnicodeString($this->description))->truncate(20);
     }
 
     public function setDescription(string $description): self
