@@ -5,12 +5,8 @@
 {% block body %}
     <h1>Missions</h1>
 
-    <table class="table">
+    <table class="table table-dark table-striped">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ mission.id }}</td>
-            </tr>
             <tr>
                 <th>Title</th>
                 <td>{{ mission.title }}</td>
@@ -27,13 +23,15 @@
                 <th>Statut</th>
                 <td>
                     {{ form_start(form) }}
-                        {{ form_row(form.statut) }}
-                        <button class="btn">{{ button_label|default('Save') }}</button>
+                        <div style="width: 50%;">{{ form_rest(form) }}</div>
+                        <div class="text-start">
+                            <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                        </div>
+                        
                     {{ form_end(form) }}
                 </td>
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_missions') }}">back to list</a>
+    <a class="btn btn-secondary ms-3" href="{{ path('app_missions') }}">Retour</a>
 {% endblock %}

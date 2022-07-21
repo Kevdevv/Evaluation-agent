@@ -1,5 +1,7 @@
 vich_uploader:
     db_driver: orm
+    twig: true            # set to false to disable twig integration
+    form: true            # set to false to disable form integration
 
     mappings:
         missions_image:

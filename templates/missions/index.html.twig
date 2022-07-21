@@ -3,36 +3,23 @@
 {% block title %}Missions{% endblock %}
 
 {% block body %}
-    <h1>Missions</h1>
+    <h1 class="mission-title">Missions</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Photo</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Country</th>
-                <th>Statut</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for mission in missions %}
-            <tr>
-                <td><img src="{{ vich_uploader_asset(mission, 'imageFile') | imagine_filter('thumb')}}"></td>
-                <td>{{ mission.title }}</td>
-                <td>{{ mission.description }}</td>
-                <td>{{ mission.country }}</td>
-                <td>{{ mission.statut }}</td>
-                <td>
-                    <a href="{{ path('app_missions_show', {'id': mission.id}) }}">show</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
+<div class="mission-list">
+<div class="card" style="width: 18rem;">
+  <img src="{{ vich_uploader_asset(mission, 'imageFile') | imagine_filter('thumb')}}" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{ mission.title }}</h5>
+    <p class="card-text"> {{ mission.country }} </p>
+    <p class="card-text">{{ mission.description | nl2br }}</p>
+    <p class="card-text"> {{ mission.statut }} </p>
+    <a href="{{ path('app_missions_show', {'id': mission.id}) }}" class="btn btn-primary">Détails</a>
+  </div>
+</div>
+</div>
+
+            
+                 
         {% endfor %}
-        </tbody>
-    </table>
 {% endblock %}

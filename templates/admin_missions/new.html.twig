@@ -4,8 +4,13 @@
 
 {% block body %}
     <h1>Create new Missions</h1>
-
-    {{ include('admin_missions/_form.html.twig') }}
-
-    <a href="{{ path('app_admin_missions_index') }}">back to list</a>
+<div class="container">
+    {{ form_start(form) }}
+        <div>{{ form_rest (form)}}</div>
+        <div class="d-flex justify-content-evenly">
+            <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+            <a href="{{ path('app_admin_missions_index') }}">Retour</a>
+        </div>
+    {{ form_end(form) }}  
+</div>
 {% endblock %}

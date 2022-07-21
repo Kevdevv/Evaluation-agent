@@ -51,6 +51,7 @@ class QgType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Qg::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

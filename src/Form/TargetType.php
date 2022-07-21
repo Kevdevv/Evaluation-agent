@@ -33,6 +33,7 @@ class TargetType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Target::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

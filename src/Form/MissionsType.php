@@ -10,9 +10,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class MissionsType extends AbstractType
 {
@@ -20,7 +22,7 @@ class MissionsType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
+            ->add('description', TextareaType::class)
             ->add('country', CountryType::class)
             ->add('type', ChoiceType::class, [
                 'choices' => [
@@ -33,8 +35,14 @@ class MissionsType extends AbstractType
                 'required' => true
             ])
             ->add('code_name')
-            ->add('start_date')
-            ->add('end_date')
+            ->add('start_date', DateType::class, [
+                // renders it as a single text box
+                'widget' => 'single_text'
+            ])
+            ->add('end_date', DateType::class, [
+                // renders it as a single text box
+                'widget' => 'single_text'
+            ])
             ->add('speciality', ChoiceType::class, [
                 'choices' => [
                     'Discrétion' => 'Discrétion',
@@ -81,6 +89,7 @@ class MissionsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Missions::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

@@ -22,7 +22,8 @@ class MissionsTypeUser extends AbstractType
                     'A faire' => 'A faire'
                 ],
                 'expanded' => true,
-                'label' => 'Statut' 
+                'label' => 'Statut',
+                'expanded' => false 
             ])
         ;
     }
@@ -31,6 +32,7 @@ class MissionsTypeUser extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Missions::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

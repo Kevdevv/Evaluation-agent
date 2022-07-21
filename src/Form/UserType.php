@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserType extends AbstractType
@@ -20,7 +21,10 @@ class UserType extends AbstractType
             ->add('email')
             ->add('firstname')
             ->add('lastname')
-            ->add('birth')
+            ->add('birth', BirthdayType::class, [
+                // renders it as a single text box
+                'widget' => 'single_text'
+            ])
             ->add('speciality', ChoiceType::class, [
                 'choices' => [
                     'Discrétion' => 'Discrétion',
@@ -65,6 +69,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+body {
+    background-color: lightgray;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background: black;
+}
+
+.card-body {
+    background: #282828;
+}
+
+.form-control, .form-select {
+    color: white;
+    background: #282828;
+    border-color: #757575;
+}
+
+.form-control:focus, .form-select:focus {
+    color: white;
+    background: #282828;
+    border-color: #757575;
+}
+
+#missions_imageFile {
+    background: #282828;
+}
+
+.input-group-text {
+    background: #282828;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #961ACD;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #961ACD;
+}
+
+.btn-secondary {
+    background: #757575;
+}
+
+h1 {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.navbar {
+    background: #282828;
+    color: white;
+}
+
+.offcanvas-body {
+    background: #282828;
+}
+
+.offcanvas-header, .container-fluid {
+    background: #282828;
+}
+
+.navbar-toggler {
+    color: white;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: #757575;
+}
+
+.btn-close:hover {
+    color: white;
+}
+
+.mission-list {
+    display: flex;
+    justify-content: center;
+}
+
+.mission-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.card {
+    border-color: #757575;
+}
