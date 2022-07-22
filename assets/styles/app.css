@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 
-/*Reste la page contact, QG, login et target a faire*/
+/*Probleme de front, ajout de la pop-up modif sur toute les listes*/
 
 
 
@@ -146,5 +146,10 @@ span.navabar-toggler-icon {
     background: #757575;
     color: white;
     width: 40%;
-    margin-left: 20px;
+    margin-left: 15px;
+}
+
+.logo-x {
+    height: 60px;
+    width: 60px;
 }

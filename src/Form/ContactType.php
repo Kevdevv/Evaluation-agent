@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class ContactType extends AbstractType
 {
@@ -22,7 +23,10 @@ class ContactType extends AbstractType
         $builder
             ->add('lastname')
             ->add('firstname')
-            ->add('birth')
+            ->add('birth', BirthdayType::class, [
+                // renders it as a single text box
+                'widget' => 'single_text'
+            ])
             ->add('name_code')
             ->add('nationality', CountryType::class)
             ->add('missions', EntityType::class, [

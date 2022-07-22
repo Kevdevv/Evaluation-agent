@@ -8,8 +8,8 @@
     {{ form_start(form) }}
         <div>{{ form_rest (form)}}</div>
         <div class="d-flex justify-content-evenly">
-            <button class="btn">{{ button_label|default('Enregistrer') }}</button>
-            <a href="{{ path('app_admin_contact_index') }}">Retour</a>
+            <button class="btn btn-primary mb-3">{{ button_label|default('Enregistrer') }}</button>
+            <a class="btn btn-secondary mb-3" href="{{ path('app_admin_contact_index') }}">Retour</a>
         </div>
     {{ form_end(form) }}  
 </div>
