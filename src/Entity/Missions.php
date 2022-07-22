@@ -39,7 +39,7 @@ class Missions
      */
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
@@ -150,13 +150,13 @@ class Missions
         return $this->description;
     }
 
-    public function getExcerpt (): ?string
+    public function getExcerpt (int $value): ?string
     {
         if ($this->description === null){
             return null;
         }
 
-        return (new UnicodeString($this->description))->truncate(20);
+        return (new UnicodeString($this->description))->truncate($value);
     }
 
     public function setDescription(string $description): self

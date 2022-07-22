@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Qg{% endblock %}
+{% block title %}Modifier QG{% endblock %}
 
 {% block body %}
-    <h1>Edit Qg</h1>
-
-    {{ include('admin_qg/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_admin_qg_index') }}">back to list</a>
-
-    {{ include('admin_qg/_delete_form.html.twig') }}
+    <h1>Modifier QG</h1>
+<div class="container">
+    
+    {{ form_start(form) }}
+        <div>{{ form_rest (form)}}</div>
+        <div class="d-flex justify-content-evenly">
+            <button class="btn btn-primary mb-3">{{ button_label|default('Mettre à jour') }}</button>
+            <a class="btn btn-secondary mb-3" href="{{ path('app_admin_qg_index') }}">Retour</a>
+            {{ include('admin_qg/_delete_form.html.twig') }}
+        </div>
+    {{ form_end(form) }}
+    
+</div>
 {% endblock %}

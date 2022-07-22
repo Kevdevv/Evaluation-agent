@@ -30,7 +30,7 @@ class AdminQgController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $qgRepository->add($qg, true);
-
+            $this->addFlash('success', 'Le QG a été crée avec succès');
             return $this->redirectToRoute('app_admin_qg_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,7 +56,7 @@ class AdminQgController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $qgRepository->add($qg, true);
-
+            $this->addFlash('success', 'Le QG a été modifié avec succès');
             return $this->redirectToRoute('app_admin_qg_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -71,6 +71,7 @@ class AdminQgController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$qg->getId(), $request->request->get('_token'))) {
             $qgRepository->remove($qg, true);
+            $this->addFlash('success', 'Le QG a été supprimé avec succès');
         }
 
         return $this->redirectToRoute('app_admin_qg_index', [], Response::HTTP_SEE_OTHER);

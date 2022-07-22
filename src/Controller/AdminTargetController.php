@@ -32,7 +32,7 @@ class AdminTargetController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $targetRepository->add($target, true);
-
+            $this->addFlash('success', 'La cible a été crée avec succès');
             return $this->redirectToRoute('app_admin_target_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -58,7 +58,7 @@ class AdminTargetController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $targetRepository->add($target, true);
-
+            $this->addFlash('success', 'La cible a été modifié avec succès');
             return $this->redirectToRoute('app_admin_target_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -73,6 +73,7 @@ class AdminTargetController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$target->getId(), $request->request->get('_token'))) {
             $targetRepository->remove($target, true);
+            $this->addFlash('success', 'La cible a été supprimé avec succès');
         }
 
         return $this->redirectToRoute('app_admin_target_index', [], Response::HTTP_SEE_OTHER);

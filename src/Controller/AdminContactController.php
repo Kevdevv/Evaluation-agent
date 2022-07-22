@@ -30,7 +30,7 @@ class AdminContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $contactRepository->add($contact, true);
-
+            $this->addFlash('success', 'Le contact a été crée avec succès');
             return $this->redirectToRoute('app_admin_contact_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,7 +56,7 @@ class AdminContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $contactRepository->add($contact, true);
-
+            $this->addFlash('success', 'Le contact a été modifié avec succès');
             return $this->redirectToRoute('app_admin_contact_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -71,6 +71,7 @@ class AdminContactController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
             $contactRepository->remove($contact, true);
+            $this->addFlash('success', 'Le contact a été supprimé avec succès');
         }
 
         return $this->redirectToRoute('app_admin_contact_index', [], Response::HTTP_SEE_OTHER);

@@ -4,10 +4,16 @@
 {% block title %}Bienvenue{% endblock %}
 
 {% block body  %}
-<div class= "container d-flex justify-content-center align-items-center" style="height: 100vh;">
-<a href="{{ path('app_admin_missions_index') }}" class="btn btn-primary">Liste des missions</a>
-<a href="{{ path('app_admin_missions_new') }}" class="btn btn-primary">Créer une mission</a>
-<a href="{{ path('app_admin_user_index') }}" class="btn btn-primary">Liste des Agents</a>
-<a href="{{ path('app_admin_user_new') }}" class="btn btn-primary">Créer un agent</a>
+<div class= "container d-flex justify-content-center align-items-center flex-column">
+<a href="{{ path('app_admin_missions_index') }}" class="btn btn-dark">Liste des missions</a>
+<a href="{{ path('app_admin_missions_new') }}" class="btn btn-dark">Créer une mission</a>
+<a href="{{ path('app_admin_user_index') }}" class="btn btn-dark">Liste des Agents</a>
+<a href="{{ path('app_admin_user_new') }}" class="btn btn-dark">Créer un agent</a>
+<a href="{{ path('app_admin_qg_index') }}" class="btn btn-dark">Liste des Qg</a>
+<a href="{{ path('app_admin_qg_new') }}" class="btn btn-dark">Créer un Qg</a>
+<a href="{{ path('app_admin_contact_index') }}" class="btn btn-dark">Liste des contacts</a>
+<a href="{{ path('app_admin_contact_new') }}" class="btn btn-dark">Créer un contact</a>
+<a href="{{ path('app_admin_target_index') }}" class="btn btn-dark">Liste des cibles</a>
+<a href="{{ path('app_admin_target_new') }}" class="btn btn-dark mb-5">Créer une cible</a>
 </div>
 {% endblock %}

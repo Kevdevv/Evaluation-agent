@@ -33,7 +33,7 @@ class AdminMissionsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $missionsRepository->add($mission, true);
-
+            $this->addFlash('success', 'La mission a été crée avec succès');
             return $this->redirectToRoute('app_admin_missions_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,7 +59,7 @@ class AdminMissionsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $missionsRepository->add($mission, true);
-
+            $this->addFlash('success', 'La mission a été modifié avec succès');
             return $this->redirectToRoute('app_admin_missions_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,6 +74,7 @@ class AdminMissionsController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$mission->getId(), $request->request->get('_token'))) {
             $missionsRepository->remove($mission, true);
+            $this->addFlash('success', 'La mission a été supprimé avec succès');
         }
 
         return $this->redirectToRoute('app_admin_missions_index', [], Response::HTTP_SEE_OTHER);

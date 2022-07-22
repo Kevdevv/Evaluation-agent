@@ -40,7 +40,7 @@ class AdminUserController extends AbstractController
             );
 
             $userRepository->add($user, true);
-
+            $this->addFlash('success', 'L\'utilisateur à été crée avec succès');
             return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,7 +74,7 @@ class AdminUserController extends AbstractController
             );
 
             $userRepository->add($user, true);
-
+            $this->addFlash('success', 'L\'utilisateur à été modifié avec succès');
             return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -89,6 +89,7 @@ class AdminUserController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
+            $this->addFlash('success', 'L\'utilisateur à été supprimé avec succès');
         }
 
         return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
