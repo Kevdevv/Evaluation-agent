@@ -20,14 +20,22 @@
                 <td>{{ mission.country | country_name }}</td>
             </tr>
             <tr>
+                <th>Cible</th>
+                <td>
+                    {% for t in mission.targets %}
+                        {{ t.firstname }} {{ t.lastname }}
+                        <br> Nationalité : {{ t.nationality | country_name}}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
                 <th>Statut</th>
                 <td>
                     {{ form_start(form) }}
                         <div style="width: 50%;">{{ form_rest(form) }}</div>
                         <div class="text-start">
-                            <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
-                        </div>
-                        
+                            <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+                        </div>               
                     {{ form_end(form) }}
                 </td>
             </tr>

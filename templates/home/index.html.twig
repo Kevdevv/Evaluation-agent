@@ -7,8 +7,6 @@
 <div class= "container d-flex flex-column justify-content-center align-items-center" style="height: 80vh;">
 {% if app.user %}
     {% if 'ROLE_ADMIN' in app.user.roles %}
-            <!--<a href="{{ path('app_missions') }}" class="btn btn-primary">Espion</a>
-            <a href="{{ path('app_admin_home') }}" class="btn btn-primary">Admin</a>-->
 
             <a href="{{ path('app_missions') }}">
             <img style ="margin-bottom: 15px;" class="agent" src="/images/agent.png">

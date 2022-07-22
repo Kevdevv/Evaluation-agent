@@ -96,12 +96,14 @@ h1 {
 .mission-list {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .mission-title {
     display: flex;
     justify-content: center;
     margin-bottom: 5%;
+    display: flex;
 }
 
 .card {

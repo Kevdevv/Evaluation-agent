@@ -23,7 +23,7 @@ class Target
     private ?string $firstname = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $birth = null;
+    private ?\Datetime $birth = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name_code = null;
@@ -76,12 +76,12 @@ class Target
         return $this;
     }
 
-    public function getBirth(): ?\DateTimeInterface
+    public function getBirth(): ?\Datetime
     {
         return $this->birth;
     }
 
-    public function setBirth(\DateTimeInterface $birth): self
+    public function setBirth(\Datetime $birth): self
     {
         $this->birth = $birth;
 

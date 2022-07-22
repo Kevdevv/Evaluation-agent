@@ -39,8 +39,9 @@ security:
     access_control:
         # allow unauthenticated users to access the login form
         - { path: ^/login, roles: PUBLIC_ACCESS }
-        - { path: ^/, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/, roles: ROLE_USER }
+        
 
 when@test:
     security:

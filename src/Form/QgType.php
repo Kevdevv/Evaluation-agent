@@ -23,9 +23,9 @@ class QgType extends AbstractType
             ->add('country', CountryType::class)
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'Surveillance' => 'Surveillance',
-                    'Assassinat' => 'Assassinat',
-                    'Infiltration' => 'Infiltration'
+                    'Appartement' => 'Appartement',
+                    'Maison' => 'Maison',
+                    'Bunker' => 'Bunker'
                 ],
                 'expanded' => false,
                 'label' => 'Type',

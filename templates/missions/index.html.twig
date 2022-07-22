@@ -5,21 +5,22 @@
 {% block body %}
     <h1 class="mission-title">Missions</h1>
 
-        {% for mission in missions %}
 <div class="mission-list">
-<div class="card" style="width: 18rem;">
-  <img src="{{ vich_uploader_asset(mission, 'imageFile') | imagine_filter('thumb')}}" class="card-img-top">
-  <div class="card-body">
-    <h5 class="card-title">{{ mission.title }}</h5>
-    <p class="card-text"> {{ mission.country }} </p>
-    <p class="card-text">{{ mission.excerpt(20) }}</p>
-    <p class="card-text"> {{ mission.statut }} </p>
-    <a href="{{ path('app_missions_show', {'id': mission.id}) }}" class="btn btn-primary">Détails</a>
-  </div>
+  {% for mission in missions %}
+    <div class="card mb-5 me-3 ms-3" style="width: 18rem;">
+      {% if mission.imageFile %}
+        <img src="{{ vich_uploader_asset(mission, 'imageFile') | imagine_filter('thumb')}}" class="card-img-top">
+      {% else %}
+        <img src="{{ '/images/Empty.jpg' | imagine_filter('thumb') }}" class="card-img-top">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ mission.title }}</h5>
+        <p class="card-text"> {{ mission.country | country_name }} </p>
+        <p class="card-text">{{ mission.excerpt(20) }}</p>
+        <p class="card-text"> {{ mission.statut }} </p>
+        <a href="{{ path('app_missions_show', {'id': mission.id}) }}" class="btn btn-primary">Détails</a>
+      </div>
+    </div>
+  {% endfor %}
 </div>
-</div>
-
-            
-                 
-        {% endfor %}
 {% endblock %}

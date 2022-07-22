@@ -36,9 +36,13 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{{ path('app_missions') }}">Espion</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_admin_home') }}">Administration</a>
-          </li>
+          {% if app.user %}
+            {% if 'ROLE_ADMIN' in app.user.roles %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_admin_home') }}">Administration</a>
+              </li>
+            {% endif %}
+          {% endif %}
         </ul>
 
         <ul class="navbar-nav mt-4">

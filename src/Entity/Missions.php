@@ -23,6 +23,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Missions
 {
+    const TYPE =[
+        0 => 'Surveillance',
+        1 => 'Assassinat',
+        2 => 'Infiltration'
+    ];
+
+    const SPEC =[
+        0 => 'Discretion',
+        1 => 'Assassin',
+        2 => 'Reperage'
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column()]

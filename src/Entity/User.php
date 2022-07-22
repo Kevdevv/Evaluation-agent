@@ -36,11 +36,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $created_at = null;
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTime $created_at = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $birth = null;
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTime $birth = null;
 
     #[ORM\Column(length: 255)]
     private ?string $speciality = null;
@@ -53,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->created_at = new DateTimeImmutable();
+        $this->created_at = new \DateTime();
     }
 
     public function getId(): ?int
@@ -150,24 +150,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(\DateTime $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getBirth(): ?\DateTimeImmutable
+    public function getBirth(): ?\DateTime
     {
         return $this->birth;
     }
 
-    public function setBirth(\DateTimeImmutable $birth): self
+    public function setBirth(\DateTime $birth): self
     {
         $this->birth = $birth;
 
